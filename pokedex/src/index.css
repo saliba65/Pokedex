@@ -1,0 +1,17 @@
+@font-face {
+  font-family: Karla;
+  font-weight: 400;
+  src: url("./assets/fonts/Karla/static/Karla-Regular.ttf");
+}
+
+@font-face {
+  font-family: Karla;
+  font-weight: 500;
+  src: url("./assets/fonts/Karla/static/Karla-Medium.ttf");
+}
+
+@font-face {
+  font-family: Karla;
+  font-weight: 600;
+  src: url("./assets/fonts/Karla/static/Karla-SemiBold.ttf");
+}

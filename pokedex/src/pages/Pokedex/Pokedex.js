@@ -14,7 +14,12 @@ const Pokedex = () => {
           <S.MenuButton>Documentation</S.MenuButton>
         </S.MenuContainer>
       </S.PokedexHeader>
-      <div>This is the Pokedex page</div>
+      <S.SearchContainer>
+        <S.SearchLabel>
+          <h2>800 Pokemons for you to choose your favorite</h2>
+        </S.SearchLabel>
+        <S.SearchInput placeholder={"Busque seu Pokemon"} />
+      </S.SearchContainer>
     </S.PokedexContainer>
   );
 };

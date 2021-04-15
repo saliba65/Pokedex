@@ -67,3 +67,57 @@ export const MenuButton = styled("button")(
     },
   })
 );
+
+export const SearchContainer = styled("div")(
+  css({
+    width: "100%",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    padding: "30px",
+  })
+);
+
+export const SearchLabel = styled("div")(
+  css({
+    display: "flex",
+    flexDirection: "row",
+    marginTop: "10px",
+    h1: {
+      fontFamily: "Karla",
+      fontWeight: "600",
+      fontSize: "32px",
+      lineHeight: "40px",
+      letterSpacing: "3px",
+      color: "#212121",
+    },
+    h2: {
+      fontFamily: "Karla",
+      fontWeight: "normal",
+      fontSize: "32px",
+      lineHeight: "40px",
+      letterSpacing: "3px",
+      color: "#212121",
+      alignItems: "center",
+    },
+  })
+);
+
+export const SearchInput = styled("input")(
+  css({
+    backgroundColor: "#F2F2F2",
+    maxWidth: "1100px",
+    width: "70%",
+    height: "50px",
+    display: "flex",
+    fontSize: "16px",
+    lineHeight: "20px",
+    marginTop: "10px",
+    boxShadow: "0px 4px 16px rgba(1, 28, 64, 0.2)",
+    border: "none",
+    outline: "none",
+    borderRadius: "40px",
+    justifyContent: "center",
+    paddingLeft: "30px",
+  })
+);

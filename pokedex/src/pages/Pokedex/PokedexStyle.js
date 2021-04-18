@@ -70,11 +70,16 @@ export const MenuButton = styled("button")(
 
 export const SearchContainer = styled("div")(
   css({
-    width: "100%",
+    width: "95%",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     padding: "30px",
+    "@media (max-width: 500px)": {
+      width: "100%",
+      justifyContent: "flex-start",
+      padding: "30px 0px",
+    },
   })
 );
 
@@ -100,6 +105,9 @@ export const SearchLabel = styled("div")(
       color: "#212121",
       alignItems: "center",
     },
+    "@media (max-width: 500px)": {
+      marginLeft: "20px",
+    },
   })
 );
 
@@ -119,5 +127,149 @@ export const SearchInput = styled("input")(
     borderRadius: "40px",
     justifyContent: "center",
     paddingLeft: "30px",
+  })
+);
+
+export const PokemonsContainer = styled("div")(
+  css({
+    width: "95%",
+    height: "100%",
+    display: "flex",
+    flexWrap: "wrap",
+    flexDirection: "row",
+    justifyContent: "center",
+    overflow: "scroll",
+    "::-webkit-scrollbar": {
+      width: "0px",
+    },
+    "@media (max-width: 500px)": {
+      width: "100%",
+      justifyContent: "flex-start",
+    },
+  })
+);
+
+export const PokemonsCard = styled("div")(
+  css({
+    maxWidth: "100%",
+    width: "350px",
+    height: "140px",
+    display: "flex",
+    flexDirection: "row",
+    margin: "0px 5px 30px 45px",
+    backgroundColor: "#F6F7F9",
+    borderRadius: "8px",
+    "@media (max-width: 500px)": {
+      width: "250px",
+      margin: "0px 0px 30px 0px",
+    },
+    ":hover": {
+      boxShadow: "0px 5px 20px rgba(1, 28, 64, 0.2)",
+      cursor: "pointer",
+    },
+  })
+);
+
+export const PokemonsInfo = styled("div")(
+  css({
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "flex-start",
+    padding: "10px 15px 0px 15px",
+  })
+);
+
+export const PokemonsName = styled("a")(
+  css({
+    fontFamily: "Karla",
+    fontWeight: "600",
+    fontSize: "18px",
+    lineHeight: "21px",
+    marginBottom: "18px",
+    marginRight: "40px",
+    color: "#212121",
+    textShadow: "4px 4px 4px rgba(33, 33, 33, 0.1)",
+  })
+);
+
+export const PokemonsDataContainer = styled("div")(
+  css({
+    display: "flex",
+    flexDirection: "row",
+    width: "100%",
+    marginBottom: "7px",
+  })
+);
+
+export const PokemonsDataCircle = styled("div")(
+  css({
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "35px",
+    height: "35px",
+    border: "3px solid #212121",
+    boxSizing: "border-box",
+    fontFamily: "Karla",
+    fontWeight: "500",
+    fontSize: "15px",
+    lineHeight: "18px",
+    padding: "7px",
+    marginRight: "7px",
+    marginLeft: "10px",
+    borderRadius: "40px",
+  })
+);
+
+export const PokemonsDataSubTitle = styled("a")(
+  css({
+    fontFamily: "Karla",
+    fontWeight: "500",
+    fontSize: "12px",
+    lineHeight: "14px",
+    color: "#4B4B4B",
+    padding: "0px 7px",
+  })
+);
+
+export const PokemonsDataType = styled("div")(
+  css({
+    height: "15px",
+    backgroundColor: "#73D677",
+    boxShadow: "inset 0px -2px 0px rgba(0, 0, 0, 0.18)",
+    borderRadius: "11px",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: "3px 10px",
+    fontFamily: "Karla",
+    fontWeight: "600",
+    fontSize: "12px",
+    lineHeight: "14px",
+    color: "#4B4B4B",
+    marginLeft: "5px",
+  }),
+  ({ isSecondaryType }) =>
+    isSecondaryType &&
+    css({
+      backgroundColor: "#07D6F2",
+    })
+);
+
+export const PokemonsImageContainer = styled("div")(
+  css({
+    width: "100%",
+    height: "100%",
+    display: "flex",
+    borderRadius: " 0px 8px 8px 0px",
+    paddingLeft: "30px",
+    paddingRight: "15px",
+    backgroundImage: "linear-gradient(270deg, #F2CB07 0.15%, #F2B807 100%);",
+
+    img: {
+      maxWidth: "170px",
+      maxHeight: "100%",
+      objectFit: "fill",
+    },
   })
 );

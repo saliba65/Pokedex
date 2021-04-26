@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 import Pokedex from "./pages/Pokedex/Pokedex";
 import Pokemon from "./pages/Pokemon/Pokemon";
+import mockData from "./mockData/mockData";
 
 function App() {
   return (

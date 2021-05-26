@@ -10,6 +10,8 @@ export const PokedexContainer = styled("div")(
     height: "100vh",
     display: "flex",
     flexDirection: "column",
+    overflowY: "auto",
+    overflowX: "hidden",
   })
 );
 

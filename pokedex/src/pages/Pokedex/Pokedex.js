@@ -1,23 +1,19 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable jsx-a11y/alt-text */
 import React, { useState } from "react";
+import { toFirstCharUppercase } from "../../utils/constants";
 import mockData from "../../mockData/mockData";
 import * as S from "./PokedexStyle";
 import { ReactComponent as Logo } from "../../assets/images/Logo.svg";
-import pikachu from "../../assets/images/pikachu.png";
 
 const Pokedex = (props) => {
   const [pokemonData, setPokemonData] = useState(mockData);
   const { history } = props;
 
-  const toFirstCharUppercase = (name) =>
-    name.charAt(0).toUpperCase() + name.slice(1);
 
   const getPokemonCard = (pokemonId) => {
-    // console.log(pokemonData[`${pokemonId}`]);
-    const { id, name, species, height, weight, types, sprites } = pokemonData[
-      `${pokemonId}`
-    ];
+    const { id, name, species, height, weight, types, sprites } =
+      pokemonData[`${pokemonId}`];
     const { front_default } = sprites;
     const fullImageUrl = `https://pokeres.bastionbot.org/images/pokemon/${id}.png`;
 

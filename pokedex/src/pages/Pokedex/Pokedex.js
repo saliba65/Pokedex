@@ -1,22 +1,56 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable jsx-a11y/alt-text */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { toFirstCharUppercase } from "../../utils/constants";
 import mockData from "../../mockData/mockData";
 import * as S from "./PokedexStyle";
 import { ReactComponent as Logo } from "../../assets/images/Logo.svg";
 
 const Pokedex = (props) => {
-  const [pokemonData, setPokemonData] = useState(mockData);
   const { history } = props;
+  const [pokemonData, setPokemonData] = useState({});
 
+  useEffect(() => {
+    axios
+      .get(`https://pokeapi.co/api/v2/pokemon?limit=807`)
+      .then(function (response) {
+        const { data } = response;
+        const { results } = data;
+        const newPokemonData = {};
+        results.forEach((pokemon, index) => {
+          newPokemonData[index + 1] = {
+            id: index + 1,
+            name: pokemon.name,
+            fullImageUrl: `https://pokeres.bastionbot.org/images/pokemon/${
+              index + 1
+            }.png`,
+          };
+        });
+        setPokemonData(newPokemonData);
+      });
+  }, []);
+
+  // gera uma cor aleatória em hexadecimal
+  function gera_cor() {
+    var hexadecimais = "0123456789ABCDEF";
+    var cor = "#";
+
+    // Pega um número aleatório no array acima
+    for (var i = 0; i < 6; i++) {
+      //E concatena à variável cor
+      cor += hexadecimais[Math.floor(Math.random() * 16)];
+    }
+    return cor;
+  }
 
   const getPokemonCard = (pokemonId) => {
-    const { id, name, species, height, weight, types, sprites } =
-      pokemonData[`${pokemonId}`];
-    const { front_default } = sprites;
-    const fullImageUrl = `https://pokeres.bastionbot.org/images/pokemon/${id}.png`;
-
+    const { id, name, species, height, weight, types, fullImageUrl } =
+      pokemonData[pokemonId];
+    // const { front_default } = sprites;
+    // const fullImageUrl = `https://pokeres.bastionbot.org/images/pokemon/${id}.png`;
+    // console.log(height)
+    console.log(gera_cor());
     return (
       <S.PokemonsCard
         key={pokemonId}
@@ -33,14 +67,7 @@ const Pokedex = (props) => {
             <S.PokemonsDataSubTitle>Defense</S.PokemonsDataSubTitle>
           </S.PokemonsDataContainer>
           <S.PokemonsDataContainer>
-            {types.map((typeInfo) => {
-              const { type } = typeInfo;
-              const { name } = type;
-              //Fazer switch para mudar cores do type
-              return (
-                <S.PokemonsDataType key={name}>{`${name}`}</S.PokemonsDataType>
-              );
-            })}
+            <S.PokemonsDataType color={gera_cor()}>Lutador</S.PokemonsDataType>
           </S.PokemonsDataContainer>
         </S.PokemonsInfo>
         <S.PokemonsImageContainer>

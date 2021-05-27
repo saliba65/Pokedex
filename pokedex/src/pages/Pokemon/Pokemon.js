@@ -1,22 +1,35 @@
 /* eslint-disable jsx-a11y/alt-text */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import mockData from "../../mockData/mockData";
 import { toFirstCharUppercase } from "../../utils/constants";
 
 import * as S from "../Pokedex/PokedexStyle";
 import * as T from "./PokemonStyle";
 import { ReactComponent as Logo } from "../../assets/images/Logo.svg";
+import { CircularProgress } from "@material-ui/core";
 
 const Pokemon = (props) => {
-  const { match } = props;
+  const { match, history } = props;
   const { params } = match;
   const { pokemonId } = params;
-  const [pokemon, setPokemon] = useState(mockData[`${pokemonId}`]);
+  const [pokemon, setPokemon] = useState(undefined);
+
+  useEffect(() => {
+    axios
+      .get(`https://pokeapi.co/api/v2/pokemon/${pokemonId}/`)
+      .then(function (response) {
+        const { data } = response;
+        setPokemon(data);
+      })
+      .catch(function (error) {
+        setPokemon(false);
+      });
+  }, [pokemonId]);
 
   const generatePokemonJSX = () => {
-    const { name, id, species, height, weight, types, sprites } = pokemon;
+    const { name, id, species, height, weight, types } = pokemon;
     const fullImageUrl = `https://pokeres.bastionbot.org/images/pokemon/${id}.png`;
-    const { front_default } = sprites;
 
     return (
       <S.PokedexContainer>
@@ -57,7 +70,16 @@ const Pokemon = (props) => {
       </S.PokedexContainer>
     );
   };
-  return <>{generatePokemonJSX()}</>;
+  return (
+    <>
+      {pokemon === undefined && <CircularProgress />}
+      {pokemon !== undefined && pokemon && generatePokemonJSX()}
+      {/* Adicionar botao goBack */}
+      {pokemon === false && (
+        <T.PokemonName>Pokemon nao encontrado</T.PokemonName>
+      )}
+    </>
+  );
 };
 
 export default Pokemon;

@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { toFirstCharUppercase } from "../../utils/constants";
-import mockData from "../../mockData/mockData";
 import * as S from "./PokedexStyle";
 import { ReactComponent as Logo } from "../../assets/images/Logo.svg";
 
@@ -31,26 +30,8 @@ const Pokedex = (props) => {
       });
   }, []);
 
-  // gera uma cor aleatória em hexadecimal
-  function gera_cor() {
-    var hexadecimais = "0123456789ABCDEF";
-    var cor = "#";
-
-    // Pega um número aleatório no array acima
-    for (var i = 0; i < 6; i++) {
-      //E concatena à variável cor
-      cor += hexadecimais[Math.floor(Math.random() * 16)];
-    }
-    return cor;
-  }
-
   const getPokemonCard = (pokemonId) => {
-    const { id, name, species, height, weight, types, fullImageUrl } =
-      pokemonData[pokemonId];
-    // const { front_default } = sprites;
-    // const fullImageUrl = `https://pokeres.bastionbot.org/images/pokemon/${id}.png`;
-    // console.log(height)
-    console.log(gera_cor());
+    const { id, name, fullImageUrl } = pokemonData[pokemonId];
     return (
       <S.PokemonsCard
         key={pokemonId}
@@ -67,10 +48,10 @@ const Pokedex = (props) => {
             <S.PokemonsDataSubTitle>Defense</S.PokemonsDataSubTitle>
           </S.PokemonsDataContainer>
           <S.PokemonsDataContainer>
-            <S.PokemonsDataType color={gera_cor()}>Lutador</S.PokemonsDataType>
+            <S.PokemonsDataType>Lutador</S.PokemonsDataType>
           </S.PokemonsDataContainer>
         </S.PokemonsInfo>
-        <S.PokemonsImageContainer>
+        <S.PokemonsImageContainer color={"red"}>
           <img src={fullImageUrl} />
         </S.PokemonsImageContainer>
       </S.PokemonsCard>

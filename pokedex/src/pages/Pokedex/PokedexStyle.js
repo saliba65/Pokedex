@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import css from "@styled-system/css";
 import "../../index.css";
+import { backgroundColor, color } from "styled-system";
 
 export const PokedexContainer = styled("div")(
   css({
@@ -238,7 +239,7 @@ export const PokemonsDataSubTitle = styled("a")(
 export const PokemonsDataType = styled("div")(
   css({
     height: "15px",
-    backgroundColor: "#73D677",
+    backgroundColor: "#07D6F2",
     boxShadow: "inset 0px -2px 0px rgba(0, 0, 0, 0.18)",
     borderRadius: "11px",
     alignItems: "center",
@@ -250,12 +251,7 @@ export const PokemonsDataType = styled("div")(
     lineHeight: "14px",
     color: "#4B4B4B",
     marginLeft: "5px",
-  }),
-  ({ isSecondaryType }) =>
-    isSecondaryType &&
-    css({
-      backgroundColor: "#07D6F2",
-    })
+  })
 );
 
 export const PokemonsImageContainer = styled("div")(
@@ -266,7 +262,7 @@ export const PokemonsImageContainer = styled("div")(
     borderRadius: " 0px 8px 8px 0px",
     paddingLeft: "30px",
     paddingRight: "15px",
-    backgroundImage: "linear-gradient(270deg, #F2CB07 0.15%, #F2B807 100%);",
+    backgroundImage: "linear-gradient(to right, red, blue , orange)",
 
     img: {
       maxWidth: "170px",

@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import css from "@styled-system/css";
 import "../../index.css";
-import { backgroundColor, color } from "styled-system";
 
 export const PokedexContainer = styled("div")(
   css({
@@ -262,7 +261,7 @@ export const PokemonsImageContainer = styled("div")(
     borderRadius: " 0px 8px 8px 0px",
     paddingLeft: "30px",
     paddingRight: "15px",
-    backgroundImage: "linear-gradient(to right, red, blue , orange)",
+    backgroundImage: "linear-gradient(to right, red, orange)",
 
     img: {
       maxWidth: "170px",

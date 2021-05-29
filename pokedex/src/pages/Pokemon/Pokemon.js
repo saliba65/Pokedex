@@ -7,6 +7,7 @@ import { toFirstCharUppercase } from "../../utils/constants";
 import * as S from "../Pokedex/PokedexStyle";
 import * as T from "./PokemonStyle";
 import { ReactComponent as Logo } from "../../assets/images/Logo.svg";
+import background from "../../assets/images/backgroundPokemon.png";
 import { CircularProgress } from "@material-ui/core";
 
 const Pokemon = (props) => {
@@ -42,31 +43,39 @@ const Pokemon = (props) => {
             <S.MenuButton>Documentation</S.MenuButton>
           </S.MenuContainer>
         </S.PokedexHeader>
-        <T.PokemonName>{`${toFirstCharUppercase(name)}`}</T.PokemonName>
-        <T.PokemonDescription>
-          <h2>Species: </h2>
-          <h2>{species.name}</h2>
-        </T.PokemonDescription>
-        <T.PokemonDescription>
-          <h2>Height: </h2>
-          <h2>{height}</h2>
-        </T.PokemonDescription>
-        <T.PokemonDescription>
-          <h2>Weight: </h2>
-          <h2>{weight}</h2>
-        </T.PokemonDescription>
-        <T.PokemonDescription>
-          <h2>Types: </h2>
-          {types.map((typeInfo) => {
-            const { type } = typeInfo;
-            const { name } = type;
-            return <h2>{`${name}`}</h2>;
-          })}
-        </T.PokemonDescription>
-        <img
-          style={{ maxWidth: "300px", maxHeight: "300px" }}
-          src={fullImageUrl}
-        />
+        <T.ContainerPokemon bg={background}>
+          <T.ContainerModal>
+            <T.LeftSideModal>
+              <img
+                style={{ maxWidth: "300px", maxHeight: "300px" }}
+                src={fullImageUrl}
+              />
+              <T.PokemonDescription>
+                <h2>Types: </h2>
+                {types.map((typeInfo) => {
+                  const { type } = typeInfo;
+                  const { name } = type;
+                  return <h2>{`${name}`}</h2>;
+                })}
+              </T.PokemonDescription>
+            </T.LeftSideModal>
+            <T.RightSideModal>
+              <T.PokemonName>{`${toFirstCharUppercase(name)}`}</T.PokemonName>
+              <T.PokemonDescription>
+                <h2>Species: </h2>
+                <h2>{species.name}</h2>
+              </T.PokemonDescription>
+              <T.PokemonDescription>
+                <h2>Height: </h2>
+                <h2>{height}</h2>
+              </T.PokemonDescription>
+              <T.PokemonDescription>
+                <h2>Weight: </h2>
+                <h2>{weight}</h2>
+              </T.PokemonDescription>
+            </T.RightSideModal>
+          </T.ContainerModal>
+        </T.ContainerPokemon>
       </S.PokedexContainer>
     );
   };

@@ -238,7 +238,6 @@ export const PokemonsDataSubTitle = styled("a")(
 export const PokemonsDataType = styled("div")(
   css({
     height: "15px",
-    backgroundColor: "#07D6F2",
     boxShadow: "inset 0px -2px 0px rgba(0, 0, 0, 0.18)",
     borderRadius: "11px",
     alignItems: "center",
@@ -250,7 +249,15 @@ export const PokemonsDataType = styled("div")(
     lineHeight: "14px",
     color: "#4B4B4B",
     marginLeft: "5px",
-  })
+  }),
+  ({ isSecondaryType }) =>
+    !isSecondaryType
+      ? css({
+          backgroundColor: "green",
+        })
+      : css({
+          backgroundColor: "#07D6F2",
+        })
 );
 
 export const PokemonsImageContainer = styled("div")(

@@ -33,7 +33,6 @@ const Pokemon = (props) => {
   }, [pokemonId]);
 
   const generateTypeColor = () => {
-    console.log("oi");
     if (typeConter % 2 === 0) {
       setSecondaryType(false);
       setTypeConter(typeConter + 1);
@@ -96,8 +95,8 @@ const Pokemon = (props) => {
           <S.MenuContainer>
             <S.MenuButton>Home</S.MenuButton>
             <S.MenuButton>Pokédex</S.MenuButton>
-            <S.MenuButton>Legendaries</S.MenuButton>
-            <S.MenuButton>Documentation</S.MenuButton>
+            <S.MenuButton>Lendários</S.MenuButton>
+            <S.MenuButton>Documentação</S.MenuButton>
           </S.MenuContainer>
         </S.PokedexHeader>
         <T.ContainerPokemon bg={background}>
@@ -116,7 +115,7 @@ const Pokemon = (props) => {
                   const { name } = type;
                   return (
                     <S.PokemonsDataType
-                      isSecondaryType={generateTypeColor}
+                      isSecondaryType={() => generateTypeColor}
                     >{`${toFirstCharUppercase(name)}`}</S.PokemonsDataType>
                   );
                 })}
@@ -132,49 +131,49 @@ const Pokemon = (props) => {
               <T.PokemonDescription>
                 <T.WhiteBoxContainer>
                   <T.PokemonSubdataContainers>
-                    <T.PokemonData isSubtitle>Species:</T.PokemonData>
+                    <T.PokemonData isSubtitle>Espécie:</T.PokemonData>
                     <T.PokemonData>{`${toFirstCharUppercase(
                       species.name
                     )}`}</T.PokemonData>
                   </T.PokemonSubdataContainers>
                   <T.PokemonSubdataContainers>
-                    <T.PokemonData isSubtitle>Height: </T.PokemonData>
+                    <T.PokemonData isSubtitle>Altura: </T.PokemonData>
                     <T.PokemonData>{height}</T.PokemonData>
                   </T.PokemonSubdataContainers>
                   <T.PokemonSubdataContainers>
-                    <T.PokemonData isSubtitle>Weight: </T.PokemonData>
+                    <T.PokemonData isSubtitle>Peso: </T.PokemonData>
                     <T.PokemonData>{weight}</T.PokemonData>
                   </T.PokemonSubdataContainers>
                 </T.WhiteBoxContainer>
               </T.PokemonDescription>
               <T.WhiteBoxContainer isProgress>
                 <T.PokemonSubdataContainers>
-                  <T.PokemonData isSubtitle>Healthy Points:</T.PokemonData>
-                  <T.PokemonData>1 000 000</T.PokemonData>
+                  <T.PokemonData isSubtitle>Pontos de vida:</T.PokemonData>
+                  <T.PokemonData>1 200 000</T.PokemonData>
                   <T.ProgressPower />
                 </T.PokemonSubdataContainers>
                 <T.PokemonSubdataContainers>
-                  <T.PokemonData isSubtitle>Experience:</T.PokemonData>
-                  <T.PokemonData>1 000 000</T.PokemonData>
+                  <T.PokemonData isSubtitle>Experiência:</T.PokemonData>
+                  <T.PokemonData> 800 000</T.PokemonData>
                   <T.ProgressPower isExperience />
                 </T.PokemonSubdataContainers>
               </T.WhiteBoxContainer>
               <T.PokemonSubdataContainers isPower>
                 <T.WhiteBoxContainer isPower>
                   <T.PowerLevel>165</T.PowerLevel>
-                  <T.PokemonData>Attack</T.PokemonData>
+                  <T.PokemonData>Ataque</T.PokemonData>
                 </T.WhiteBoxContainer>
                 <T.WhiteBoxContainer isPower>
                   <T.PowerLevel>49</T.PowerLevel>
-                  <T.PokemonData>Defense</T.PokemonData>
+                  <T.PokemonData>Defesa</T.PokemonData>
                 </T.WhiteBoxContainer>
                 <T.WhiteBoxContainer isPower>
                   <T.PowerLevel>130</T.PowerLevel>
-                  <T.PokemonData>Sp Attack</T.PokemonData>
+                  <T.PokemonData>Especial</T.PokemonData>
                 </T.WhiteBoxContainer>
                 <T.WhiteBoxContainer isPower>
                   <T.PowerLevel>271</T.PowerLevel>
-                  <T.PokemonData>Sp Defense</T.PokemonData>
+                  <T.PokemonData>Regeneração</T.PokemonData>
                 </T.WhiteBoxContainer>
               </T.PokemonSubdataContainers>
             </T.RightSideModal>

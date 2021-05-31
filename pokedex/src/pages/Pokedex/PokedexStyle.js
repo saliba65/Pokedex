@@ -141,6 +141,7 @@ export const PokemonsContainer = styled("div")(
     flexDirection: "row",
     justifyContent: "center",
     overflow: "scroll",
+    marginTop: "10px",
     "::-webkit-scrollbar": {
       width: "0px",
     },
@@ -251,29 +252,27 @@ export const PokemonsDataType = styled("div")(
     marginLeft: "5px",
   }),
   ({ isSecondaryType }) =>
-    !isSecondaryType
+    isSecondaryType
       ? css({
-          backgroundColor: "green",
+          backgroundColor: "#73D677",
         })
       : css({
           backgroundColor: "#07D6F2",
         })
 );
 
-export const PokemonsImageContainer = styled("div")(
-  css({
-    width: "100%",
-    height: "100%",
-    display: "flex",
-    borderRadius: " 0px 8px 8px 0px",
-    paddingLeft: "30px",
-    paddingRight: "15px",
-    backgroundImage: "linear-gradient(to right, red, orange)",
+export const PokemonsImageContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  border-radius: 0px 8px 8px 0px;
+  padding-left: 30px;
+  padding-right: 15px;
+  background: ${(props) => props.bg};
 
-    img: {
-      maxWidth: "170px",
-      maxHeight: "100%",
-      objectFit: "fill",
-    },
-  })
-);
+  img {
+    max-width: 170px;
+    max-height: 100%;
+    object-fit: fill;
+  }
+`;

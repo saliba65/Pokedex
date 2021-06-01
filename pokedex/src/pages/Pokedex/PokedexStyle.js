@@ -19,7 +19,8 @@ export const PokedexHeader = styled("div")(
   css({
     width: "100vw",
     height: "93px",
-    backgroundColor: "#F5DB13",
+    backgroundImage:
+      "radial-gradient(circle at -7.92% 90.56%, #b2eaff 0, #5389f2 50%, #003265 100%)",
     boxShadow: "0px 4px 16px rgba(1, 28, 64, 0.2)",
     flexDirection: "row",
     display: "flex",
@@ -27,9 +28,9 @@ export const PokedexHeader = styled("div")(
     alignItems: "center",
     padding: "0px 10%",
 
-    svg: {
-      width: "157.17px",
-      height: "63px",
+    img: {
+      width: "160px",
+      height: "100%",
     },
   })
 );

@@ -4,7 +4,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { toFirstCharUppercase } from "../../utils/constants";
 import * as S from "./PokedexStyle";
-import { ReactComponent as Logo } from "../../assets/images/Logo.svg";
+// import { ReactComponent as Logo } from "../../assets/images/Logo.svg";
+import Logo from "../../assets/images/PokemonLogo.png";
+import SkeletonPokedex from "./PokedexSkeleton";
 
 const Pokedex = (props) => {
   const { history } = props;
@@ -15,10 +17,9 @@ const Pokedex = (props) => {
   const handleSearchingChange = (e) => {
     setFilter(e.target.value);
   };
-
   useEffect(() => {
     axios
-      .get(`https://pokeapi.co/api/v2/pokemon?limit=151`)
+      .get(`https://pokeapi.co/api/v2/pokemon?limit=884`)
       .then(function (response) {
         const { data } = response;
         const { results } = data;
@@ -74,7 +75,6 @@ const Pokedex = (props) => {
           "radial-gradient(circle at -11.24% 85.36%, #ffedb0 0, #eed391 25%, #d8b46c 50%, #c39549 75%, #b37c2e 100%)"
         );
     }
-    // console.log(id);
     return backgroundColor;
   };
 
@@ -85,24 +85,30 @@ const Pokedex = (props) => {
         key={pokemonId}
         onClick={() => history.push(`/${pokemonId}`)}
       >
-        <S.PokemonsInfo>
-          <S.PokemonsName>{`${toFirstCharUppercase(name)}`}</S.PokemonsName>
-          <S.PokemonsDataContainer>
-            <S.PokemonsDataCircle>419</S.PokemonsDataCircle>
-            <S.PokemonsDataCircle>350</S.PokemonsDataCircle>
-          </S.PokemonsDataContainer>
-          <S.PokemonsDataContainer>
-            <S.PokemonsDataSubTitle>Ataque</S.PokemonsDataSubTitle>
-            <S.PokemonsDataSubTitle>Defesa</S.PokemonsDataSubTitle>
-          </S.PokemonsDataContainer>
-          <S.PokemonsDataContainer>
-            <S.PokemonsDataType isSecondaryType>Lutador</S.PokemonsDataType>
-            <S.PokemonsDataType>Terrestre</S.PokemonsDataType>
-          </S.PokemonsDataContainer>
-        </S.PokemonsInfo>
-        <S.PokemonsImageContainer bg={() => generateColor(id)}>
-          <img src={fullImageUrl} />
-        </S.PokemonsImageContainer>
+        {!pokemonData ? (
+          <SkeletonPokedex />
+        ) : (
+          <>
+            <S.PokemonsInfo>
+              <S.PokemonsName>{`${toFirstCharUppercase(name)}`}</S.PokemonsName>
+              <S.PokemonsDataContainer>
+                <S.PokemonsDataCircle>419</S.PokemonsDataCircle>
+                <S.PokemonsDataCircle>350</S.PokemonsDataCircle>
+              </S.PokemonsDataContainer>
+              <S.PokemonsDataContainer>
+                <S.PokemonsDataSubTitle>Ataque</S.PokemonsDataSubTitle>
+                <S.PokemonsDataSubTitle>Defesa</S.PokemonsDataSubTitle>
+              </S.PokemonsDataContainer>
+              <S.PokemonsDataContainer>
+                <S.PokemonsDataType isSecondaryType>Lutador</S.PokemonsDataType>
+                <S.PokemonsDataType>Terrestre</S.PokemonsDataType>
+              </S.PokemonsDataContainer>
+            </S.PokemonsInfo>
+            <S.PokemonsImageContainer bg={() => generateColor(id)}>
+              <img src={fullImageUrl} />
+            </S.PokemonsImageContainer>
+          </>
+        )}
       </S.PokemonsCard>
     );
   };
@@ -110,7 +116,7 @@ const Pokedex = (props) => {
   return (
     <S.PokedexContainer>
       <S.PokedexHeader>
-        <Logo />
+        <img src={Logo} />
         <S.MenuContainer>
           <S.MenuButton>Home</S.MenuButton>
           <S.MenuButton>Pokédex</S.MenuButton>
@@ -120,7 +126,7 @@ const Pokedex = (props) => {
       </S.PokedexHeader>
       <S.SearchContainer>
         <S.SearchLabel>
-          <h2>Mais de 800 Pokemons para você escolher o seu favorito</h2>
+          <h2>Mais de 880 Pokemons para você escolher o seu favorito</h2>
         </S.SearchLabel>
         <S.SearchInput
           placeholder={"Busque seu Pokemon"}
@@ -129,7 +135,6 @@ const Pokedex = (props) => {
       </S.SearchContainer>
       <S.PokemonsContainer>
         {/* Implementar um skeleton no futuro */}
-        {/* {!pokemonData ? <Skeleon/> : } */}
         {Object.keys(pokemonData).map(
           (pokemonId) =>
             pokemonData[pokemonId].name.includes(filter) &&

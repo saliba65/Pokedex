@@ -28,7 +28,7 @@ const Pokedex = (props) => {
           newPokemonData[index + 1] = {
             id: index + 1,
             name: pokemon.name,
-            fullImageUrl: `https://pokeres.bastionbot.org/images/pokemon/${
+            fullImageUrl: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
               index + 1
             }.png`,
           };

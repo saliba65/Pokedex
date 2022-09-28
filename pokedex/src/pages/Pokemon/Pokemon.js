@@ -11,7 +11,7 @@ import background from "../../assets/images/backgroundPokemon.png";
 import goBackIcon from "../../assets/icons/goBackIcon.png";
 import SkeletonPokemon from "./PokemonSkeleton";
 
-const Pokemon = (props) => {
+const Pokemon = props => {
   const { match, history } = props;
   const { params } = match;
   const { pokemonId } = params;
@@ -21,17 +21,20 @@ const Pokemon = (props) => {
   const [typeConter, setTypeConter] = useState(0);
   const goBack = () => history.goBack();
 
-  useEffect(() => {
-    axios
-      .get(`https://pokeapi.co/api/v2/pokemon/${pokemonId}/`)
-      .then(function (response) {
-        const { data } = response;
-        setPokemon(data);
-      })
-      .catch(function (error) {
-        setPokemon(false);
-      });
-  }, [pokemonId]);
+  useEffect(
+    () => {
+      axios
+        .get(`https://pokeapi.co/api/v2/pokemon/${pokemonId}/`)
+        .then(function(response) {
+          const { data } = response;
+          setPokemon(data);
+        })
+        .catch(function(error) {
+          setPokemon(false);
+        });
+    },
+    [pokemonId]
+  );
 
   const generateTypeColor = () => {
     if (typeConter % 2 === 0) {
@@ -88,7 +91,7 @@ const Pokemon = (props) => {
 
   const generatePokemonJSX = () => {
     const { name, id, species, height, weight, types } = pokemon;
-    const fullImageUrl = `https://pokeres.bastionbot.org/images/pokemon/${id}.png`;
+    const fullImageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
     return (
       <T.ContainerPokemon bg={background}>
         <T.ContainerModal bg={generateColor}>
@@ -97,11 +100,11 @@ const Pokemon = (props) => {
               <img src={goBackIcon} />
             </T.GoBackButton>
             <img
-              style={{ maxWidth: "300px", maxHeight: "300px" }}
+              style={{ width: "250px", height: "250px" }}
               src={fullImageUrl}
             />
             <T.PokemonDescription isTypeData>
-              {types.map((typeInfo) => {
+              {types.map(typeInfo => {
                 const { type } = typeInfo;
                 const { name } = type;
                 return (
@@ -116,7 +119,9 @@ const Pokemon = (props) => {
             <T.TitleContainer>
               <T.PokemonName>{`${toFirstCharUppercase(name)}`}</T.PokemonName>
               <T.PokemonIdCircle>
-                <h1>{id}</h1>
+                <h1>
+                  {id}
+                </h1>
               </T.PokemonIdCircle>
             </T.TitleContainer>
             <T.PokemonDescription>
@@ -129,11 +134,15 @@ const Pokemon = (props) => {
                 </T.PokemonSubdataContainers>
                 <T.PokemonSubdataContainers>
                   <T.PokemonData isSubtitle>Altura: </T.PokemonData>
-                  <T.PokemonData>{height}</T.PokemonData>
+                  <T.PokemonData>
+                    {height}
+                  </T.PokemonData>
                 </T.PokemonSubdataContainers>
                 <T.PokemonSubdataContainers>
                   <T.PokemonData isSubtitle>Peso: </T.PokemonData>
-                  <T.PokemonData>{weight}</T.PokemonData>
+                  <T.PokemonData>
+                    {weight}
+                  </T.PokemonData>
                 </T.PokemonSubdataContainers>
               </T.WhiteBoxContainer>
             </T.PokemonDescription>
@@ -186,9 +195,8 @@ const Pokemon = (props) => {
       {pokemon === undefined && <SkeletonPokemon />}
       {pokemon !== undefined && pokemon && generatePokemonJSX()}
       {/* Adicionar botao goBack */}
-      {pokemon === false && (
-        <T.PokemonName>Pokemon nao encontrado</T.PokemonName>
-      )}
+      {pokemon === false &&
+        <T.PokemonName>Pokemon nao encontrado</T.PokemonName>}
     </S.PokedexContainer>
   );
 };
